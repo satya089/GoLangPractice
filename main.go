@@ -56,6 +56,11 @@ func main() {
 		fmt.Printf("Remaining tickets is %v\n", remainingTickets)
 
 		bookings = append(bookings, firstName+" "+lastName)
+
+		if remainingTickets <= 0 {
+			fmt.Println("Sorry! All Tickets are sold")
+			break
+		}
 	}
 
 	fmt.Println(bookings)
