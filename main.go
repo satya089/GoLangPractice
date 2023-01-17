@@ -49,6 +49,17 @@ func main() {
 
 		fmt.Println("Please enter the number of tickets you want")
 		fmt.Scan(&numberOfTickets)
+		if numberOfTickets > remainingTickets {
+			fmt.Println("sorry we don't have that much ticket left, we are having %v tickets only", remainingTickets)
+			fmt.Println("Press 1 to book tickets again and 2 for exit")
+			var choice int
+			fmt.Scan(&choice)
+			if choice == 1 {
+				continue
+			} else {
+				break
+			}
+		}
 
 		remainingTickets = remainingTickets - numberOfTickets
 
