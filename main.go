@@ -79,6 +79,8 @@ func main() {
 			}
 		}
 
+		helper.UserToNumberOfTickets(firstName, lastName, numberOfTickets)
+
 		if numberOfTickets > remainingTickets {
 			fmt.Printf("sorry we don't have that much ticket left, we are having %v tickets only", remainingTickets)
 			fmt.Println("Press 1 to book tickets again and 2 for exit")
