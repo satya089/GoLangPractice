@@ -11,10 +11,14 @@ func main() {
 	const conferenceTickets = 50
 	var remainingTickets = 50
 
-	//we can get the data type by using %T
-	fmt.Printf("conferenceName is type of %T conferenceTickets is type of %T remainingTickets is type of %T", conferenceName, conferenceTickets, remainingTickets)
+	//fmt.Println("Welcome to our ", conferenceName, " application :)")
+	greetUsers()
 
-	fmt.Println("Welcome to our ", conferenceName, " application :)")
+	//we can get the data type by using %T
+	//fmt.Printf("conferenceName is type of %T conferenceTickets is type of %T remainingTickets is type of %T\n", conferenceName, conferenceTickets, remainingTickets)
+
+	dataTypeInfo(conferenceName, conferenceTickets, remainingTickets)
+
 	fmt.Println("We have total of", conferenceTickets, "tickets and", remainingTickets, "tickets are still available")
 	fmt.Println("Get your tickets here...")
 
@@ -41,10 +45,10 @@ func main() {
 		fmt.Println("Please enter your first name : ")
 		fmt.Scan(&firstName)
 
-		var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2
-
 		fmt.Println("Please enter your last name : ")
 		fmt.Scan(&lastName)
+
+		var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2
 
 		fmt.Println("Please enter you email ID")
 		fmt.Scan(&userEmail)
@@ -58,7 +62,7 @@ func main() {
 
 		if !isValidName || !isValidEmail || !isValidNumberOfTickets {
 			if !isValidName {
-				fmt.Printf("Sorry! you entered wrong name : %v\n", userName)
+				fmt.Printf("Sorry! you entered wrong name : %v\n", firstName+" "+lastName)
 			} else if !isValidEmail {
 				fmt.Printf("Sorry! you entered wrong emailID : %v\n", userEmail)
 			} else {
@@ -75,7 +79,7 @@ func main() {
 		}
 
 		if numberOfTickets > remainingTickets {
-			fmt.Println("sorry we don't have that much ticket left, we are having %v tickets only", remainingTickets)
+			fmt.Printf("sorry we don't have that much ticket left, we are having %v tickets only", remainingTickets)
 			fmt.Println("Press 1 to book tickets again and 2 for exit")
 			var choice int
 			fmt.Scan(&choice)
@@ -86,7 +90,7 @@ func main() {
 			}
 		}
 
-		remainingTickets = remainingTickets - numberOfTickets
+		remainingTickets = findRemainingTickets(remainingTickets, numberOfTickets)
 
 		fmt.Printf("Congratulations %v %v with email ID %v on grabbing %v tickets\n", firstName, lastName, userEmail, numberOfTickets)
 		fmt.Printf("Remaining tickets is %v\n", remainingTickets)
@@ -103,11 +107,17 @@ func main() {
 
 	//we want to print first name only while we have full names of users in bookings slice
 
-	for _, booking := range bookings {
-		parseFullName := strings.Fields(booking)
-		firstName := parseFullName[0]
-		println(firstName)
+	//for _, booking := range bookings {
+	//	parseFullName := strings.Fields(booking)
+	//	firstName := parseFullName[0]
+	//	println(firstName)
+	//
+	//}
 
+	printFirstNames(bookings)
+	firstNames := printFirstNamesByReturningSlice(bookings)
+	for _, firstName := range firstNames {
+		fmt.Println(firstName)
 	}
 
 	//// Switch statement example
@@ -126,4 +136,42 @@ func main() {
 	//	fmt.Print("No valid city selected")
 	//}
 
+}
+
+//func func_name(func_parameters) return_type{
+//	function_body
+//}
+
+func greetUsers() {
+	fmt.Println("Welcome to our ticketing conference :)")
+}
+
+// Data type should't be written while passing const as parameter
+func dataTypeInfo(conferenceName string, conferenceTickets, remainingTickets int) {
+	fmt.Printf("conferenceName is type of %T conferenceTickets is type of %T remainingTickets is type of %T\n", conferenceName, conferenceTickets, remainingTickets)
+
+}
+
+func findRemainingTickets(remainingTickets int, numberOfTickets int) int {
+	return remainingTickets - numberOfTickets
+}
+
+//returns nothing
+func printFirstNames(bookings []string) {
+	for _, booking := range bookings {
+		parseFullName := strings.Fields(booking)
+		firstName := parseFullName[0]
+		println(firstName)
+	}
+}
+
+//returns a slice of string
+func printFirstNamesByReturningSlice(bookings []string) []string {
+
+	var temp []string
+	for _, booking := range bookings {
+		parseFullName := strings.Fields(booking)
+		temp = append(temp, parseFullName[0])
+	}
+	return temp
 }
