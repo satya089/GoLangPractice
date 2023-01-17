@@ -57,8 +57,14 @@ func main() {
 		isValidNumberOfTickets := numberOfTickets > 0 && numberOfTickets <= 50
 
 		if !isValidName || !isValidEmail || !isValidNumberOfTickets {
-			fmt.Println("Sorry! you entered wrong input")
-			fmt.Println("Press 1 to book tickets again and 2 for exit")
+			if !isValidName {
+				fmt.Printf("Sorry! you entered wrong name : %v\n", userName)
+			} else if !isValidEmail {
+				fmt.Printf("Sorry! you entered wrong emailID : %v\n", userEmail)
+			} else {
+				fmt.Printf("Sorry! you entered wrong numberOfTickets : %v\n", numberOfTickets)
+			}
+			fmt.Println("Press 1 to book tickets again and 2 for exit\n")
 			var choice int
 			fmt.Scan(&choice)
 			if choice == 1 {
