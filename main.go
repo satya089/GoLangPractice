@@ -1,6 +1,7 @@
 package main
 
 import (
+	"booking-app/helper"
 	"fmt"
 	"strings"
 )
@@ -115,7 +116,7 @@ func main() {
 	//}
 
 	printFirstNames(bookings)
-	firstNames := printFirstNamesByReturningSlice(bookings)
+	firstNames := helper.PrintFirstNamesByReturningSlice(bookings)
 	for _, firstName := range firstNames {
 		fmt.Println(firstName)
 	}

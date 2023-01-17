@@ -1,9 +1,9 @@
-package main
+package helper
 
 import "strings"
 
 // returns a slice of string
-func printFirstNamesByReturningSlice(bookings []string) []string {
+func PrintFirstNamesByReturningSlice(bookings []string) []string {
 
 	var temp []string
 	for _, booking := range bookings {
