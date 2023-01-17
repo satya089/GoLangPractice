@@ -31,7 +31,7 @@ func main() {
 
 	bookings := []string{}
 
-	for i := 0; i < 3; i++ {
+	for remainingTickets >= 0 {
 
 		var firstName string
 		var lastName string
@@ -41,14 +41,33 @@ func main() {
 		fmt.Println("Please enter your first name : ")
 		fmt.Scan(&firstName)
 
+		var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2
+
 		fmt.Println("Please enter your last name : ")
 		fmt.Scan(&lastName)
 
 		fmt.Println("Please enter you email ID")
 		fmt.Scan(&userEmail)
 
+		isValidEmail := strings.Contains(userEmail, "@")
+
 		fmt.Println("Please enter the number of tickets you want")
 		fmt.Scan(&numberOfTickets)
+
+		isValidNumberOfTickets := numberOfTickets > 0 && numberOfTickets <= 50
+
+		if !isValidName || !isValidEmail || !isValidNumberOfTickets {
+			fmt.Println("Sorry! you entered wrong input")
+			fmt.Println("Press 1 to book tickets again and 2 for exit")
+			var choice int
+			fmt.Scan(&choice)
+			if choice == 1 {
+				continue
+			} else {
+				break
+			}
+		}
+
 		if numberOfTickets > remainingTickets {
 			fmt.Println("sorry we don't have that much ticket left, we are having %v tickets only", remainingTickets)
 			fmt.Println("Press 1 to book tickets again and 2 for exit")
