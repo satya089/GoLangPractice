@@ -156,22 +156,11 @@ func findRemainingTickets(remainingTickets int, numberOfTickets int) int {
 	return remainingTickets - numberOfTickets
 }
 
-//returns nothing
+// returns nothing
 func printFirstNames(bookings []string) {
 	for _, booking := range bookings {
 		parseFullName := strings.Fields(booking)
 		firstName := parseFullName[0]
 		println(firstName)
 	}
-}
-
-//returns a slice of string
-func printFirstNamesByReturningSlice(bookings []string) []string {
-
-	var temp []string
-	for _, booking := range bookings {
-		parseFullName := strings.Fields(booking)
-		temp = append(temp, parseFullName[0])
-	}
-	return temp
 }
