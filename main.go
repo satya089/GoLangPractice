@@ -36,6 +36,13 @@ func main() {
 
 	bookings := []string{}
 
+	type bookingStruct struct {
+		firstName       string
+		lastName        string
+		emailId         string
+		numberOfTickets int
+	}
+
 	for remainingTickets >= 0 {
 
 		var firstName string
@@ -58,6 +65,16 @@ func main() {
 
 		fmt.Println("Please enter the number of tickets you want")
 		fmt.Scan(&numberOfTickets)
+
+		demo := bookingStruct{
+			firstName:       firstName,
+			lastName:        lastName,
+			emailId:         userEmail,
+			numberOfTickets: numberOfTickets,
+		}
+
+		fmt.Printf("type of bookingStruct is %T", demo)
+		fmt.Println(demo)
 
 		isValidNumberOfTickets := numberOfTickets > 0 && numberOfTickets <= 50
 
